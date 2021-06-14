@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">Login</h1>
-    <b-form @submit.prevent="onLogin">
+    <b-form @submit.prevent="onLogin()">
       <b-form-group
         id="input-group-Username"
         label-cols-sm="3"
@@ -93,17 +93,20 @@ export default {
     },
     async Login() {
       try {
+        this.axios.defaults.withCredentials = true;
         const response = await this.axios.post(
-          "https://localhost:3000/user/Login",
+          "http://localhost:3000/Login",
           {
             username: this.form.username,
             password: this.form.password
           }
         );
-        // console.log(response);
+        this.axios.defaults.withCredentials = false;
+        console.log(response);
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
+        this.$root.toast("Login", "User logged in successfully", "success");
         this.$router.push("/");
       } catch (err) {
         console.log(err.response);

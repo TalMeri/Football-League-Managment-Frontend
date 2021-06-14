@@ -24,7 +24,8 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin, 
-  InputGroupPlugin
+  InputGroupPlugin,
+  ModalPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -37,10 +38,11 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin, 
-  InputGroupPlugin
+  InputGroupPlugin,
+  ModalPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
-
+axios.defaults.withCradentials=true;
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
@@ -69,8 +71,8 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-  // username: localStorage.username,
-  username: "hilla",
+  username: localStorage.username,
+  //username: "hilla",
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;

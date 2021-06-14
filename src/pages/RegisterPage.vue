@@ -26,6 +26,46 @@
       </b-form-group>
 
       <b-form-group
+        id="input-group-firstname"
+        label-cols-sm="3"
+        label="First Name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          v-model="$v.form.firstName.$model"
+          type="text"
+          :state="validateState('firstName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+          First name alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-lastname"
+        label-cols-sm="3"
+        label="Last Name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          v-model="$v.form.lastName.$model"
+          type="text"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          Last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+          Last name alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
         id="input-group-country"
         label-cols-sm="3"
         label="Country:"
@@ -90,6 +130,43 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="E-mail:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          E-mail is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.email">
+          E-mail must be in email format
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-image"
+        label-cols-sm="3"
+        label="Image:"
+        label-for="image"
+      >
+        <b-form-input
+          id="image"
+          v-model="$v.form.image.$model"
+          type="text"
+          :state="validateState('image')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.image.required">
+          Image is required
+        </b-form-invalid-feedback>
+      </b-form-group>
+
       <b-button type="reset" variant="danger">Reset</b-button>
       <b-button
         type="submit"
@@ -142,6 +219,7 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
+        image: "",
         submitError: undefined
       },
       countries: [{ value: null, text: "", disabled: true }],
@@ -156,6 +234,14 @@ export default {
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha
       },
+      firstName: {
+        required,
+        alpha
+      },
+      lastName: {
+        required,
+        alpha
+      },
       country: {
         required
       },
@@ -166,6 +252,13 @@ export default {
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
+      },
+      email: {
+        required,
+        email
+      },
+      image: {
+        required
       }
     }
   },
@@ -182,10 +275,15 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "http://localhost:3000/Register",
           {
             username: this.form.username,
-            password: this.form.password
+            firstname: this.form.firstName,
+            lastname: this.form.firstName,
+            country: this.form.country,
+            password: this.form.password,
+            email: this.form.email,
+            image: this.form.image,
           }
         );
         this.$router.push("/login");

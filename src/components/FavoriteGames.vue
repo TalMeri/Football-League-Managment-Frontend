@@ -2,12 +2,14 @@
   <div>
     <GamePreview
       v-for="g in games"
-      :id="g.id" 
-      :hostTeam="g.hostTeam" 
-      :guestTeam="g.guestTeam" 
-      :date="g.date" 
-      :hour="g.hour" 
-      :key="g.id"></GamePreview>
+      :id="g.game_id" 
+      :hometeam="g.hometeam" 
+      :awayteam="g.awayteam" 
+      :game_date="g.game_date" 
+      :game_time="g.game_time" 
+      :field="g.feild" 
+      :referee="g.referee" 
+      :key="g.game_id"></GamePreview>
   </div>
 </template>
 
@@ -16,49 +18,37 @@ import GamePreview from "./GamePreview.vue";
 export default {
   name: "FavoriteGames",
   components: {
-    GamePreview
+    GamePreview: GamePreview
   }, 
   data() {
     return {
-      games: [
-        {
-          id:25,
-          hostTeam: "Maccabi Tel-Aviv",
-          guestTeam: "Hapoel Beer-Sheva",
-          date: "27/5/21",
-          hour: "20:00"
-        },
-        {
-          id:39,
-          hostTeam: "Hapoel Tel-Aviv",
-          guestTeam: "Maccabi Haifa",
-          date: "29/5/21",
-          hour: "20:00"
-        }
-      ]
+      games: []
     };
   },
-  // methods: {
-  //   async updateGames(){
-  //     console.log("response");
-  //     try {
-  //       const response = await this.axios.get(
-  //         "http://localhost:3000/games/favoriteGames",
-  //       );
-  //       const games = response.data.games;
-  //       this.games = [];
-  //       this.games.push(...games);
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.log("error in update games")
-  //       console.log(error);
-  //     }
-  //   }
-  // }, 
-  // mounted(){
-  //   console.log("favorite games mounted");
-  //   this.updateGames(); 
-  // }
+  methods: {
+    async updateGames(){
+      console.log("response");
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.get(
+          "http://localhost:3000/users/favoriteGames",
+        );
+        this.axios.defaults.withCredentials = false;
+        const games = response.data;
+        this.games = [];
+        this.games.push(...games);
+        console.log(response);
+      } catch (error) {
+        console.log("error in update games")
+        console.log(error.response.data);
+        this.$root.toast("Favorite Games", error.response.data, "warning");
+      }
+    }
+  }, 
+  mounted(){
+    console.log("favorite games mounted");
+    this.updateGames(); 
+  }
 };
 </script>
 

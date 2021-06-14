@@ -1,26 +1,14 @@
 <template>
   <div class="container">
-    <h1 class="title">Main Page</h1>
-  <div class="row">
-    <div class="col-sm" style="text-align: center">
-      <LeagueInfo></LeagueInfo>
-    </div>
-    <div class="col-sm">
-      <LoginPage v-if="!$root.store.username"></LoginPage>
-      <FavoriteGames v-else></FavoriteGames>
-    </div>
-  </div>
+    <h1 class="title">Favorite Games</h1>
+      <FavoriteGames></FavoriteGames>
   </div>
 </template>
 
 <script>
-import LeagueInfo from "../components/LeagueInfo";
 import FavoriteGames from "../components/FavoriteGames";
-import LoginPage from "../pages/LoginPage";
 export default {
   components: {
-    LeagueInfo, 
-    LoginPage, 
     FavoriteGames
   }
 };

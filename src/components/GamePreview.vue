@@ -4,10 +4,12 @@
       <b>Game Id:</b> {{ id }}
     </div>
     <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
-      <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
+      <li> <b>Host:</b> {{ hometeam }}</li>
+      <li> <b>Guest:</b> {{ awayteam }}</li>
+      <li> <b>Date:</b> {{ game_date }}</li>
+      <li> <b>Time:</b> {{ game_time }}</li>
+      <li> <b>Field:</b> {{ field }}</li>
+      <li> <b>Referee:</b> {{ referee }}</li>
     </ul>
   </div>
 </template>
@@ -20,19 +22,27 @@ export default {
         type: Number,
         required: true
       },
-      hostTeam: {
+      hometeam: {
         type: String,
         required: true
       },
-      guestTeam: {
+      awayteam: {
         type: String,
         required: true
       },
-      date: {
+      game_date: {
         type: String,
         required: true
       },
-      hour: {
+      game_time: {
+        type: String,
+        required: true
+      },
+      field: {
+        type: String,
+        required: true
+      },
+      referee: {
         type: String,
         required: true
       }
