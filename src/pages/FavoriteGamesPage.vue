@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-favgames">
     <h1 class="title">Favorite Games</h1>
       <FavoriteGames></FavoriteGames>
   </div>

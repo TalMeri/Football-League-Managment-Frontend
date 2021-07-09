@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-search">
     <h1 class="title">Search Page</h1>
       <label class="sort">Filter By: </label>
       <select v-model="FilterBy">
@@ -243,5 +243,8 @@ export default {
 #search-input, #filter-position, #filter-teamname {
   margin-left: 20px; 
   width: 500px; 
+}
+.container-search{
+  padding:50px;
 }
 </style>

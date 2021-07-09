@@ -1,8 +1,9 @@
 <template>
-  <div class="container">
-<table class="table">
+  <div class="container-games">
+    <h2>GAMES</h2>
+<table class="table table-hover table-dark">
   <thead>
-    <tr>
+    <tr class="bg-primary">
       <th scope="col">Host Team</th>
       <th scope="col">Guest Team</th>
       <th scope="col">Date</th>
@@ -11,7 +12,7 @@
       <th scope="col">Referee</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody >
       <OldGameAsRow
       v-for="g in games"
       :id="g.game_id" 
@@ -27,9 +28,9 @@
       ></OldGameAsRow>
     </tbody>
 </table>
-<table class="table">
+<table class="table table-hover table-dark">
   <thead>
-    <tr>
+    <tr class="bg-primary">
       <th scope="col">Host Team</th>
       <th scope="col">Guest Team</th>
       <th scope="col">Date</th>
@@ -125,8 +126,7 @@ export default {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
+.container-games{
+  padding:50px;
 }
 </style>
