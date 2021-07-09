@@ -12,12 +12,6 @@
         </select>
       </div>
     </div>
-      <b-input-group prepend="Order By:" id="search-input">
-      <b-form-input v-model="OrderBy" id="searchQuery"></b-form-input>
-      <b-input-group-append>
-        <b-button variant="success" @click="Search">Search</b-button>
-      </b-input-group-append>
-    </b-input-group>
     <label class="sort">Order By:  </label>
 
       <select class="selectpicker" v-model="OrderBy">
