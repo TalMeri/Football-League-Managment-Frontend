@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar class="navbar navbar-dark bg-dark" type="dark" variant="info">
       <b-navbar-brand :to="{ name: 'main' }">Superliga Vue</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
@@ -28,7 +28,9 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+    <div id="pages">
     <router-view />
+    </div>
   </div>
 </template>
 
@@ -59,10 +61,16 @@ export default {
   // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  min-height: 100vh;
-}
+   min-height: 100vh;
+  background: url('background7.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color:white;
+  text-align: center;
 
+  
+}
 #nav {
   padding: 30px;
 }
@@ -74,5 +82,8 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.bg-info{
+  background-color:#313d3f !important;
 }
 </style>

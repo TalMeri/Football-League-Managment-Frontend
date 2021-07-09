@@ -7,11 +7,14 @@
       <td>{{ field }}</td>
       <td>{{ referee }}</td>
       <td v-if="score!=undefined">{{score}}</td>
+      <td v-else></td>
       <td v-if="logevent!=undefined"><EventInfo       
       v-for="e in logevent"
       :minute="e.gamemin" 
       :event="e.event" 
       :key="e.gamemin+e.event"></EventInfo></td>
+      <td v-else></td>
+      <td><b-button class="b-button"  @click=addToFavorite> &#128077; </b-button></td>
     </tr>
 </template>
 

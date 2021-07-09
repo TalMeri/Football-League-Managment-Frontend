@@ -1,19 +1,40 @@
 <template>
-  <div class="container">
-    <label class="sort">Sort By: </label>
-      <select v-model="SortBy">
-        <option>Date</option>
-        <option>Team Name</option>
-      </select>
-      <label class="sort">Order By: </label>
-      <select v-model="OrderBy">
+  <div class="container-league">
+    <h2>MANAGE LEAGUE</h2>
+  <div class="row">
+    <div class="col-sm" id="leftSort">
+      <div class="input-group-mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Sort By:</label>
+        <select class="custom-select" id="inputGroupSelect01"  v-model="SortBy">
+          <option>Date</option>
+          <option>Team Name</option>
+        </select>
+      </div>
+    </div>
+      <b-input-group prepend="Order By:" id="search-input">
+      <b-form-input v-model="OrderBy" id="searchQuery"></b-form-input>
+      <b-input-group-append>
+        <b-button variant="success" @click="Search">Search</b-button>
+      </b-input-group-append>
+    </b-input-group>
+    <label class="sort">Order By:  </label>
+
+      <select class="selectpicker" v-model="OrderBy">
         <option>Ascending</option>
         <option>Descending</option>
       </select>
+   
       <b-button class="b-button" type="submit" @click="sort" variant="primary">Sort</b-button>
-<table class="table">
+      </div>
+      <div class="col-sm" id="rightSort">
+      <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Add New Game</b-button>
+      </div>
+      </div>
+      <br>
+<table class="table table-hover table-dark">
   <thead>
-    <tr>
+    <tr class="bg-primary">
       <th scope="col">Host Team</th>
       <th scope="col">Guest Team</th>
       <th scope="col">Date</th>
@@ -22,6 +43,7 @@
       <th scope="col">Referee</th>
       <th scope="col">Score</th>
       <th scope="col">Events</th>
+      <th scope="col">Add as Favorite</th>
     </tr>
   </thead>
   <tbody>
@@ -41,8 +63,6 @@
     </tbody>
 </table>
 <div>
-  
-  <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Add New Game</b-button>
 
   <b-modal id="bv-modal-example" hide-footer>
     <template #modal-title>
@@ -68,8 +88,8 @@ export default {
     data() {
         return {
             games: [],
-            SortBy: "Date",
-            OrderBy: "Ascending",
+            SortBy: "",
+            OrderBy: "",
             submitted: false
     };
   },
@@ -216,15 +236,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.RandomRecipes {
-  margin: 10px 0 10px;
-}
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
+.container-league{
+  padding:50px;
+}
+#leftSort{
+  text-align: left;
+}
+#rightSort{
+  text-align: right;
+}
+.input-group-mb-3, .custom-select{
+  padding-right:20px;
+  width:200px;
 }
 </style>

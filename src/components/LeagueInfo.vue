@@ -8,7 +8,9 @@
         <br/>
         <b>Stage:</b> {{ stage }}
         <br/>
+        <br/>
         <div v-if="games!=null">
+          <b>NEXT GAME:</b>
           <GamePreview style="text-align: left"
             :id="games.game_id"
             :hometeam="games.hometeam" 
@@ -68,13 +70,12 @@ export default {
 .league-preview {
   display: inline-block;
   width: 350px;
-  height: 330px;
+  height: 350px;
   position: relative;
   margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:rgb(44, 89, 116);
+  border-radius: 6px;
+  background:rgba(255, 255, 255, 0.75);
+  color:black;
 }
 
 .league-preview .league-title {
@@ -88,5 +89,6 @@ export default {
   overflow: hidden;
   text-align: center;
 }
+
 
 </style>

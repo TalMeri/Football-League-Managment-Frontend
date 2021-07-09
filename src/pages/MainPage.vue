@@ -1,13 +1,18 @@
 <template>
-  <div class="container">
-    <h1 class="title">Main Page</h1>
+  <div class="main-container">
   <div class="row">
     <div class="col-sm" style="text-align: center">
+      <div id="LeagueInfo">
       <LeagueInfo></LeagueInfo>
+      </div>
     </div>
     <div class="col-sm">
-      <LoginPage v-if="!$root.store.username"></LoginPage>
-      <FavoriteGames v-else></FavoriteGames>
+      <Login v-if="!$root.store.username"></Login>
+      <div v-else>
+        <h5 id="favGames">My Favorite Games</h5>
+        <FavoriteGames></FavoriteGames>
+        </div>
+      
     </div>
   </div>
   </div>
@@ -16,26 +21,33 @@
 <script>
 import LeagueInfo from "../components/LeagueInfo";
 import FavoriteGames from "../components/FavoriteGames";
-import LoginPage from "../pages/LoginPage";
+import Login from "../components/Login";
 export default {
   components: {
     LeagueInfo, 
-    LoginPage, 
+    Login, 
     FavoriteGames
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.RandomRecipes {
-  margin: 10px 0 10px;
-}
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
+
+.col-sm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin:50px;
+}
+.row{
+  margin-right: 0;
+}
+#favGames{
+  color:  rgb(111, 155, 197);
 }
 </style>
