@@ -18,32 +18,12 @@ export default {
   }, 
   data() {
     return {
-      teams: []
+      teams: this.$root.store.favoriteTeams
     };
   },
-  methods: {
-    async updateTeams(){
-      console.log("response");
-      try {
-        this.axios.defaults.withCredentials = true;
-        const response = await this.axios.get(
-          "http://localhost:3000/users/favoriteTeams",
-        );
-        this.axios.defaults.withCredentials = false;
-        const teams = response.data;
-        this.teams = [];
-        this.teams.push(...teams);
-        console.log(response);
-      } catch (error) {
-        console.log("error in update teams")
-        console.log(error.response.data);
-        this.$root.toast("Favorite Teams", error.response.data, "warning");
-      }
-    }
-  }, 
   mounted(){
     console.log("favorite teams mounted");
-    this.updateTeams(); 
+    //this.updateTeams(); 
   }
 };
 </script>

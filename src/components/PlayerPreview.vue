@@ -13,6 +13,7 @@
       class="card-img-bottom"
       style="height: 200px; width: auto"
     />
+    <b-button class="b-button" :disabled="this.$root.store.favoritePlayers.some(data=> data.id==id)" @click=addToFavorite> &#128077; </b-button>
     </div>
   </div>
 </template>
@@ -45,6 +46,25 @@ export default {
   methods: {
     async moveToPlayerPage(id){
       this.$router.push(`/PlayerPage/:${id}`);
+    },
+    async addToFavorite(){
+      console.log("response");
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.post(
+          "http://localhost:3000/users/favoritePlayers",
+          {
+            playerId: this.id
+          }
+        );
+        this.axios.defaults.withCredentials = false;
+        this.$root.store.favoritePlayers.push({id: this.id, name: this.name , team_name: this.team_name, position:this.position, image:this.image });
+        console.log(response);
+      } catch (error) {
+        console.log("error in add to favorite Players")
+        console.log(error);
+        this.$root.toast("Favorite Players", error.data, "warning");
+      }
     }
   },
   mounted(){

@@ -92,8 +92,8 @@ export default {
  data() {
     return {
       searchQuery:"",
-      teams:[],
-      players:[],
+      teams: this.$root.store.lastTeams,
+      players: this.$root.store.lastPlayers,
       SortByPlayer: "Player Name",
       OrderByPlayer: "Ascending",
       SortByTeam: "Team Name",
@@ -150,6 +150,7 @@ export default {
           this.$root.toast("Search", "No Such Team or Player", "warning");
         }
         console.log(response);
+        this.$root.store.lastSearch(this.teams, this.players);
       } catch (error) {
         console.log("error in update teams")
         console.log(error);
@@ -205,6 +206,7 @@ export default {
       }
       this.players = x;
       console.log(this.players);
+      this.$root.store.lastSearch(this.teams, this.players);
     },
     sortTeam() {
     let x;
@@ -230,6 +232,7 @@ export default {
       }
       this.teams = x;
       console.log(this.teams);
+      this.$root.store.lastSearch(this.teams, this.players);
     },
   },
 };

@@ -42,6 +42,27 @@ export default {
         required: true
       }
   }, 
+  methods: {
+    async addToFavorite(){
+      console.log("response");
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.post(
+          "http://localhost:3000/users/favoriteGames",
+          {
+            gameId: this.id
+          }
+        );
+        this.axios.defaults.withCredentials = false;
+        this.$root.store.favoritePlayers.push({id: this.id, hometeam: this.hometeam , awayteam: this.awayteam, game_date:this.game_date, game_time:this.game_time, field:this.field, referee:this.referee });
+        console.log(response);
+      } catch (error) {
+        console.log("error in add to favorite Players")
+        console.log(error);
+        this.$root.toast("Favorite Players", error.data, "warning");
+      }
+    }
+  },
   mounted(){
     console.log("game preview mounted")
   } 

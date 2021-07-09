@@ -20,32 +20,12 @@ export default {
   }, 
   data() {
     return {
-      players: []
+      players: this.$root.store.favoritePlayers
     };
   },
-  methods: {
-    async updatePlayers(){
-      console.log("response");
-      try {
-        this.axios.defaults.withCredentials = true;
-        const response = await this.axios.get(
-          "http://localhost:3000/users/favoritePlayers",
-        );
-        this.axios.defaults.withCredentials = false;
-        const players = response.data;
-        this.players = [];
-        this.players.push(...players);
-        console.log(response);
-      } catch (error) {
-        console.log("error in update players")
-        console.log(error.response.data);
-        this.$root.toast("Favorite Players", error.response.data, "warning");
-      }
-    }
-  }, 
   mounted(){
     console.log("favorite games mounted");
-    this.updatePlayers(); 
+    //this.updatePlayers(); 
   }
 };
 </script>

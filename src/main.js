@@ -72,17 +72,49 @@ Vue.config.productionTip = false;
 
 const shared_data = {
   username: localStorage.username,
-  //username: "hilla",
+  lastTeams: JSON.parse(localStorage.getItem("lastTeams")),
+  lastPlayers: JSON.parse(localStorage.getItem("lastPlayers")),
+  favoriteGames: JSON.parse(localStorage.getItem("favoriteGames")),
+  favoriteTeams: JSON.parse(localStorage.getItem("favoriteTeams")),
+  favoritePlayers: JSON.parse(localStorage.getItem("favoritePlayers")),
+
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
     console.log("login", this.username);
+    this.lastTeams = [];
+    this.lastPlayers = [];
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("lastTeams");
+    localStorage.removeItem("lastPlayers");
     this.username = undefined;
-  }
+    this.lastTeams = [];
+    this.lastPlayers = [];
+  },
+  lastSearch(lastTeams, lastPlayers){
+    localStorage.setItem("lastTeams", JSON.stringify(lastTeams));
+    localStorage.setItem("lastPlayers", JSON.stringify(lastPlayers));
+    this.lastTeams = lastTeams;
+    this.lastPlayers = lastPlayers;
+  },
+  addToFavoriteGames(favoriteGames){
+    localStorage.setItem("favoriteGames", JSON.stringify(favoriteGames));
+    this.favoriteGames = favoriteGames;
+    console.log("favorite", this.favoriteGames);
+  },
+  addToFavoriteTeams(favoriteTeams){
+    localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
+    this.favoriteTeams = favoriteTeams;
+    console.log("favorite", this.favoriteTeams);
+  },
+  addToFavoritePlayers(favoritePlayers){
+    localStorage.setItem("favoritePlayers", JSON.stringify(favoritePlayers));
+    this.favoritePlayers = favoritePlayers;
+    console.log("favorite", this.favoritePlayers);
+  },
 };
 console.log(shared_data);
 // Vue.prototype.$root.store = shared_data;
