@@ -8,16 +8,16 @@
         <br/>
         <b>Stage:</b> {{ stage }}
         <br/>
-        <div>
+        <div v-if="games!=null">
           <GamePreview style="text-align: left"
-            :id="this.games.game_id"
-            :hometeam="this.games.hometeam" 
-            :awayteam="this.games.awayteam" 
-            :game_date="this.games.game_date" 
-            :game_time="this.games.game_time" 
-            :field="this.games.feild" 
-            :referee="this.games.referee" 
-            :key="this.games.game_id"></GamePreview>
+            :id="games.game_id"
+            :hometeam="games.hometeam" 
+            :awayteam="games.awayteam" 
+            :game_date="games.game_date" 
+            :game_time="games.game_time" 
+            :field="games.feild" 
+            :referee="games.referee" 
+            :key="games.game_id"></GamePreview>
         </div>
       </div>
   </div>
@@ -34,7 +34,7 @@ export default {
       leagueName: "", 
       season: "", 
       stage: "",
-      games: ""
+      games: null
     };
   },
    methods: {

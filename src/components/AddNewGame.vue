@@ -1,72 +1,72 @@
 <template>
   <div class="container">
+    <h1 class="title">Add New Game</h1>
     <b-form @submit.prevent="onAddGame" @reset.prevent="onReset">
       <b-form-group
-        id="input-group-game-date"
+        id="input-group-gamedate"
         label-cols-sm="3"
         label="Game Date:"
-        label-for="GameDate"
-        placeholder="2021-12-01"
+        label-for="gamedate"
       >
         <b-form-input
-          id="GameDate"
-          v-model="$v.form.GameDate.$modal"
+          id="gamedate"
+          v-model="$v.form.gamedate.$model"
           type="text"
-          :state="validateState('GameDate')"
+          :state="validateState('gamedate')"
         ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.GameDate.required">
-          Game Date is required
+        <b-form-invalid-feedback v-if="!$v.form.gamedate.required">
+          Game date is required
         </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group
-        id="input-group-game-time"
+        id="input-group-gametime"
         label-cols-sm="3"
         label="Game Time:"
-        label-for="GameTime"
+        label-for="gametime"
       >
         <b-form-input
-          id="GameTime"
-          v-model="$v.form.GameTime.$modal"
+          id="gametime"
+          v-model="$v.form.gametime.$model"
           type="text"
-          :state="validateState('GameTime')"
+          :state="validateState('gametime')"
         ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.GameTime.required">
-          Game Time is required
+        <b-form-invalid-feedback v-if="!$v.form.gametime.required">
+          First name is required
         </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group
-        id="input-group-home-team"
+        id="input-group-hometeam"
         label-cols-sm="3"
         label="Host Team:"
-        label-for="HomeTeam"
+        label-for="hometeam"
       >
         <b-form-input
-          id="HomeTeam"
-          v-model="$v.form.HomeTeam.$modal"
+          id="hometeam"
+          v-model="$v.form.hometeam.$model"
           type="text"
-          :state="validateState('HomeTeam')"
+          :state="validateState('hometeam')"
         ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.HomeTeam.required">
-          Host Team is required
+        <b-form-invalid-feedback v-if="!$v.form.hometeam.required">
+          Host team is required
         </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group
-        id="input-group-away-team"
+        id="input-group-awayteam"
         label-cols-sm="3"
         label="Guest Team:"
-        label-for="AwayTeam"
+        label-for="awayteam"
       >
         <b-form-input
-          id="AwayTeam"
-          v-model="$v.form.AwayTeam.$modal"
+          id="awayteam"
+          v-model="$v.form.awayteam.$model"
           type="text"
-          :state="validateState('AwayTeam')"
+          :state="validateState('awayteam')"
         ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.AwayTeam.required">
-          Guest Team is required
+        <b-form-invalid-feedback v-if="!$v.form.awayteam.required">
+          Guest team is required
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -78,12 +78,12 @@
       >
         <b-form-input
           id="field"
-          v-model="$v.form.field.$modal"
+          v-model="$v.form.field.$model"
           type="text"
           :state="validateState('field')"
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.field.required">
-          Field is required
+          field is required
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -94,20 +94,16 @@
         label-for="referee"
       >
         <b-form-input
-          id="referee"
-          v-model="$v.form.referee.$modal"
+          id="field"
+          v-model="$v.form.referee.$model"
           type="text"
           :state="validateState('referee')"
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.referee.required">
           Referee is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.referee.alpha">
-            Referee alpha
-        </b-form-invalid-feedback>
       </b-form-group>
 
-  
       <b-button type="reset" variant="danger">Reset</b-button>
       <b-button
         type="submit"
@@ -126,57 +122,61 @@
     >
       Add Game failed: {{ form.submitError }}
     </b-alert>
+    <!-- <b-card class="mt-3 md-3" header="Form Data Result">
+      <pre class="m-0"><strong>form:</strong> {{ form }}</pre>
+      <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>
+    </b-card> -->
   </div>
 </template>
 
 <script>
 import {
   required,
-  alpha,
 } from "vuelidate/lib/validators";
 
 export default {
-  name: "AddGame",
+  name: "AddNewGame",
   data() {
     return {
       form: {
-        GameDate: "",
-        GameTime: "",
-        HomeTeam: "",
-        AwayTeam: "",
-        field: "",
-        referee: "",
+        gamedate: "",
+        gametime: "",
+        hometeam:"",
+        awayteam:"",
+        field:"",
+        referee:"",
         submitError: undefined
       },
+      countries: [{ value: null, text: "", disabled: true }],
       errors: [],
       validated: false
     };
   },
   validations: {
     form: {
-      GameDate: {
-        required,
-      },
-      GameTime: {
-        required,
-      },
-      HomeTeam: {
-        required,
-      },
-      AwayTeam: {
+      gamedate: {
         required
       },
-      field: {
-        required,
+      gametime: {
+        required
       },
-      referee: {
-        required,
-        alpha
+      hometeam: {
+        required
       },
+      awayteam:{
+        required
+      },
+      field:{
+        required
+      },
+      referee:{
+        required,
+      }
     }
   },
   mounted() {
     // console.log("mounted");
+    //this.countries.push(...countries);
     // console.log($v);
   },
   methods: {
@@ -184,26 +184,27 @@ export default {
       const { $dirty, $error } = this.$v.form[param];
       return $dirty ? !$error : null;
     },
-    async AddGame() {
+    async Register() {
       try {
+        this.axios.defaults.withCredentials = true;
         const response = await this.axios.post(
           "http://localhost:3000/games/addGame",
           {
-            game_date: this.form.GameDate,
-            game_time: this.form.GameTime,
-            hometeam: this.form.HomeTeam,
-            awayteam: this.form.AwayTeam,
-            feild: this.form.feild,
-            referee: this.form.referee
+            game_date: this.form.gamedate,
+            game_time: this.form.gametime,
+            hometeam: this.form.hometeam,
+            awayteam: this.form.awayteam,
+            feild: this.form.field,
+            referee: this.form.referee,
           }
         );
-        this.$router.push("/");
+        this.axios.defaults.withCredentials = false;
+        this.$router.push("/league");
         // console.log(response);
       } catch (err) {
         console.log(err.response);
-        this.$root.toast("Add New Games", error.response.data, "warning");
-        this.form.submitError = err.response.data.message;
-      }
+        this.$root.toast("Add New Game", err.response.data, "warning");
+        }
     },
     onAddGame() {
       // console.log("register method called");
@@ -212,16 +213,16 @@ export default {
         return;
       }
       // console.log("register method go");
-      this.AddGame();
+      this.Register();
     },
     onReset() {
       this.form = {
-        GameDate: "",
-        GameTime: "",
-        HomeTeam: "",
-        AwayTeam: "",
-        field: "",
-        referee: "",
+        gamedate: "",
+        gametime: "",
+        hometeam:"",
+        awayteam:"",
+        field:"",
+        referee:""
       };
       this.$nextTick(() => {
         this.$v.$reset();

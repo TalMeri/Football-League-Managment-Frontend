@@ -41,6 +41,7 @@
     </tbody>
 </table>
 <div>
+  
   <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Add New Game</b-button>
 
   <b-modal id="bv-modal-example" hide-footer>

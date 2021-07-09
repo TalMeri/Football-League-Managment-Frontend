@@ -2,13 +2,13 @@
   <div class="container">
     <h1 class="title">{{this.team.name}}</h1>
   <div class="row">
-    <div class="col-sm" style="text-align: center">
+    <div v-if="this.team!=null" class="col-sm" style="text-align: center">
       <TeamPreview
       :id="this.team.id" 
       :name="this.team.name" 
       :logo_path="this.team.logo_path"></TeamPreview>
     </div>
-    <div class="col-sm">
+    <div v-if="this.team!=null" class="col-sm">
       <TeamInfo
         :twitter="this.team.twitter"
         :founded="this.team.founded"
@@ -75,7 +75,7 @@ export default {
         return {
             twitter:"",
             founded:"",
-            team:"",
+            team: null,
             players:[],
             games:[],
             oldgames:[]
