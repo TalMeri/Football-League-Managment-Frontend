@@ -106,6 +106,7 @@ export default {
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
+        this.getFavorites();
         this.$root.toast("Login", "User logged in successfully", "success");
         this.$router.push("/");
       } catch (err) {
@@ -123,6 +124,35 @@ export default {
       // console.log("login method go");
 
       this.Login();
+    },
+    async getFavorites(){
+        try {
+        this.axios.defaults.withCredentials = true;
+        const favGames = await this.axios.get(
+          "http://localhost:3000/users/favoriteGames",
+        );
+        this.axios.defaults.withCredentials = false;
+        const games = favGames.data;
+        this.$root.store.addToFavoriteGames(games);
+        this.axios.defaults.withCredentials = true;
+        const favPlayers = await this.axios.get(
+          "http://localhost:3000/users/favoritePlayers",
+        );
+        this.axios.defaults.withCredentials = false;
+        const players = favPlayers.data;
+        this.$root.store.addToFavoritePlayers(players);
+        this.axios.defaults.withCredentials = true;
+        const favTeams = await this.axios.get(
+          "http://localhost:3000/users/favoriteTeams",
+        );
+        this.axios.defaults.withCredentials = false;
+        const teams = favTeams.data;
+        this.$root.store.addToFavoriteTeams(teams);
+        } catch (error) {
+        console.log("error in update games")
+        console.log(error.response.data);
+        this.$root.toast("Favorite Games", error.response.data, "warning");
+      }
     }
   }
 };
