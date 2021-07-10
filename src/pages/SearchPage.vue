@@ -48,7 +48,8 @@
         v-for="p in players"
         :id="p.id" 
         :name="p.name" 
-        :position="p.position" 
+        :positionName="p.positionName"
+        :positionId="p.positionId" 
         :team_name="p.team_name" 
         :image="p.image" 
         :key="p.player_id"></PlayerPreview>

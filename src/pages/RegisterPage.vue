@@ -102,9 +102,16 @@
           For that, your password should be also:
         </b-form-text>
         <b-form-invalid-feedback
-          v-if="$v.form.password.required && !$v.form.password.length"
-        >
+          v-if="$v.form.password.required && !$v.form.password.length && !$v.form.password.specialkey && !$v.form.password.onenumber">
           Have length between 5-10 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="$v.form.password.required && !$v.form.password.specialkey">
+          Have one special key
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="$v.form.password.required && !$v.form.password.onenumber">
+          Have one number
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -124,8 +131,7 @@
           Password confirmation is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback
-          v-else-if="!$v.form.confirmedPassword.sameAsPassword"
-        >
+          v-else-if="!$v.form.confirmedPassword.sameAsPassword">
           The confirmed password is not equal to the original password
         </b-form-invalid-feedback>
       </b-form-group>
@@ -162,11 +168,8 @@
           type="text"
           :state="validateState('image')"
         ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.image.required">
-          Image is required
-        </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.image.url">
-          Image must be a URL
+        <b-form-invalid-feedback v-if="!$v.form.image.required && !$v.form.image.url">
+          Image is required and must be URL
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -251,6 +254,8 @@ export default {
       },
       password: {
         required,
+        specialkey: (p) => /[!@#\$%\^\&*\)\(+=._-]/.test(p),
+        onenumber: (p) => /\d/.test(p),
         length: (p) => minLength(5)(p) && maxLength(10)(p)
       },
       confirmedPassword: {

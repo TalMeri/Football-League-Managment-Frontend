@@ -1,6 +1,6 @@
 <template>
   <div class="container-login">
-      <Login></Login>
+      <Login @moveto="moveto"></Login>
   </div>
 </template>
 
@@ -9,6 +9,11 @@ import Login from "../components/Login";
 export default {
   components: {
     Login
+  },
+  methods:{
+    moveto(){
+      this.$router.push("/");
+    }
   }
 };
 </script>

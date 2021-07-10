@@ -109,9 +109,11 @@ export default {
         this.$root.toast("Login", "User logged in successfully", "success");
         await this.getFavorites();
         this.$emit('updateFavorite')
+        this.$emit('moveto')
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
+        this.$root.toast("Login", err.response.data, "warning");
       }
     },
     onLogin() {
