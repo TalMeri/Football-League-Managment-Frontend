@@ -9,7 +9,7 @@ username: manager
 password: manager@123
 
 In this site you can:<br>
-Check the games of the season.<br>
-Search for players and teams.<br>
-You can also check players and teams pages.<br>
-For register users ONLY! - can mark players, teams and games as favorite.<br>
+*Check the games of the season.<br>
+*Search for players and teams.<br>
+*You can also check players and teams pages.<br>
+*For register users - can mark players, teams and games as favorite.<br>
