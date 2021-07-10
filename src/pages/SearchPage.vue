@@ -52,7 +52,7 @@
         :positionId="p.positionId" 
         :team_name="p.team_name" 
         :image="p.image" 
-        :key="p.player_id"></PlayerPreview>
+        :key="p.id"></PlayerPreview>
       </div>
       <div v-if="this.teams.length>0">
         <div class="search-teams">
@@ -63,7 +63,7 @@
         </select>
       </b-input-group>
       <b-input-group prepend="Order By:" id="orderby-teams">
-        <select class="custom-select" v-model="OrderByteam">
+        <select class="custom-select" v-model="OrderByTeam">
           <option>Ascending</option>
           <option>Descending</option>
         </select>
@@ -236,7 +236,7 @@ export default {
         } else if(this.OrderByPlayer == "Descending") {
           x = this.players.sort(function(a, b) {
             let nameA=a.team_name.toLowerCase(), nameB=b.team_name.toLowerCase();
-            if (nameA < nameB) //sort string ascending
+            if (nameA < nameB) //sort string descending
                 return 1;
             if (nameA > nameB)
                 return -1;
@@ -251,6 +251,7 @@ export default {
     sortTeam() {
     let x;
     console.log(this.teams);
+    console.log(this.OrderByTeam);
     if(this.OrderByTeam == "Ascending") {
       x = this.teams.sort(function(a, b) {
         let nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();

@@ -1,7 +1,7 @@
 <template>
     <tr>
-      <td @click="moveToTeamPage(hometeamId)">{{ hometeam }} </td>
-      <td @click="moveToTeamPage(awayteamId)">{{ awayteam }}</td>
+      <td style="cursor: pointer;" @click="moveToTeamPage(hometeamId)">{{ hometeam }}</td>
+      <td style="cursor: pointer;" @click="moveToTeamPage(awayteamId)">{{ awayteam }}</td>
       <td>{{ game_date }}</td>
       <td>{{ game_time }}</td>
       <td>{{ field }}</td>
