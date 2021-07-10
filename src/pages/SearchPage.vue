@@ -196,7 +196,7 @@ export default {
         console.log(error);
         this.players = [];
         this.teams = [];
-        this.$root.toast("Search", error.data, "warning");
+        this.$root.toast("Search", error.response.data, "warning");
       }
     },
     sortPlayer() {
