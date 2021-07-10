@@ -12,12 +12,14 @@
       <li> <b>Referee:</b> {{ referee }}</li>
       <li> <b>Score</b> {{score}}</li>
     </ul>
-    <EventInfo
-        v-for="e in logevent"
-      :minute="e.minute" 
-      :event="e.event"  
-      :key="e.event_id">
-    ></EventInfo>
+      <b>LogEvent:</b>
+    <div class="old-game-content" 
+      v-for="e in logevent"
+      :key="e.gamemin+e.event">
+      <ul><li>
+      Minute: {{e.gamemin}}<br>
+      {{e.event}}<br></li></ul>
+    </div>
   </div>
 </template>
 
@@ -70,7 +72,7 @@ export default {
 .old-game-info {
   display: inline-block;
   width: 250px;
-  height: 400px;
+  height: 450px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

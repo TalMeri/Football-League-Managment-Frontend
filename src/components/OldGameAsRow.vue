@@ -1,7 +1,7 @@
 <template>
     <tr>
-      <td>{{ hometeam }}</td>
-      <td>{{ awayteam }}</td>
+      <td style="cursor: pointer;">{{ hometeam }}</td>
+      <td style="cursor: pointer;">{{ awayteam }}</td>
       <td>{{ game_date }}</td>
       <td>{{ game_time }}</td>
       <td>{{ field }}</td>

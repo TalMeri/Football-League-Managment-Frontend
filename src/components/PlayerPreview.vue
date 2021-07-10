@@ -14,7 +14,7 @@
     <img @click="moveToPlayerPage(id)"
       :src="image"
       class="card-img-bottom"
-      style="max-height: 200px; width: auto"
+      style="max-height: 200px; width: auto; cursor: pointer;"
     />
     </div>
     <div class="player-botton">
@@ -121,5 +121,6 @@ export default {
 }
 .player-title:hover{
   color:rgb(111, 155, 197);
+  cursor: pointer;
 }
 </style>

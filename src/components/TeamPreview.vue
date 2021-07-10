@@ -8,7 +8,7 @@
     <img @click="moveToTeamPage(id)"
       :src="logo_path"
       class="card-img-bottom"
-      style="min-height: 200px; width: auto"
+      style="min-height: 200px; width: auto; cursor: pointer;"
     />
     </div>
     <div class="team-button">
@@ -95,5 +95,6 @@ export default {
 }
 .team-title:hover{
   color:rgb(111, 155, 197);
+  cursor: pointer;
 }
 </style>
