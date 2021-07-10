@@ -1,30 +1,26 @@
 <template>
   <div class="container-league">
     <h2>MANAGE LEAGUE</h2>
-  <div class="row">
-    <div class="col-sm" id="leftSort">
-      <div class="input-group-mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Sort By:</label>
-        <select class="custom-select" id="inputGroupSelect01"  v-model="SortBy">
-          <option>Date</option>
-          <option>Team Name</option>
-        </select>
-      </div>
-    </div>
-    <label class="sort">Order By:  </label>
-
-      <select class="selectpicker" v-model="OrderBy">
-        <option>Ascending</option>
-        <option>Descending</option>
-      </select>
-   
-      <b-button class="b-button" type="submit" @click="sort" variant="primary">Sort</b-button>
+    <div class="row">
+      <div class="col-sm" id="leftSort">
+        <b-input-group prepend="Sort By:" id="sortby-input">
+          <select class="custom-select" v-model="SortBy">
+            <option>Date</option>
+            <option>Team Name</option>
+          </select>
+        </b-input-group>
+        <b-input-group prepend="Order By:" id="orderby-input">
+          <select class="custom-select" v-model="OrderBy">
+            <option>Ascending</option>
+            <option>Descending</option>
+          </select>
+        </b-input-group>
+        <b-button class="b-button" type="submit" @click="sort" variant="primary">Sort</b-button>
       </div>
       <div class="col-sm" id="rightSort">
-      <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Add New Game</b-button>
+        <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Add New Game</b-button>
       </div>
-      </div>
+    </div>
       <br>
 <table class="table table-hover table-dark">
   <thead>
@@ -243,8 +239,8 @@ export default {
 #rightSort{
   text-align: right;
 }
-.input-group-mb-3, .custom-select{
-  padding-right:20px;
-  width:200px;
+#orderby-input,#sortby-input {
+  width: 250px; 
+  padding-bottom:5px;
 }
 </style>

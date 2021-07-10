@@ -160,7 +160,10 @@ export default {
 <style lang="scss" scoped>
 .container-right {
   max-width: 400px;
+  padding:20px;
+  border-radius: 10px;
   color:white;
   text-align: center;
+  background-color: rgba($color: #000000cb, $alpha: 0.7);
 }
 </style>

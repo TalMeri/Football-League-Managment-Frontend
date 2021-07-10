@@ -103,15 +103,15 @@
           Referee is required
         </b-form-invalid-feedback>
       </b-form-group>
-
+      <div class="row">
       <b-button type="reset" variant="danger">Reset</b-button>
       <b-button
         type="submit"
         variant="primary"
         style="width:250px;"
         class="ml-5 w-75"
-        >Add Game</b-button
-      >
+        >Add Game</b-button>
+      </div>
     </b-form>
     <b-alert
       class="mt-2"

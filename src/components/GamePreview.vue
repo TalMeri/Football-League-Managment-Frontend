@@ -79,7 +79,7 @@ export default {
 .game-preview {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 230px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
@@ -99,6 +99,7 @@ export default {
 .game-preview .game-content {
   width: 100%;
   overflow: hidden;
+  align-content: center;
   text-align: left;
 }
 

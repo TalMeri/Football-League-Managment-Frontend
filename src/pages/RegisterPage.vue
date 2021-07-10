@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Register</h1>
+    <h2 class="title">Register</h2>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
       <b-form-group
         id="input-group-username"
@@ -321,6 +321,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container {
+  margin-top:30px;
+  padding:20px;
   max-width: 500px;
+  color:white;
+  border-radius: 10px;
+  background-color: rgba($color: #000000cb, $alpha: 0.7);
 }
 </style>

@@ -31,6 +31,7 @@
     <div id="pages">
     <router-view />
     </div>
+    <br>
   </div>
 </template>
 
@@ -66,10 +67,10 @@ export default {
   background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color:white;
   text-align: center;
-
-  
+}
+h2{
+  color:white;
 }
 #nav {
   padding: 30px;
@@ -86,4 +87,5 @@ export default {
 .bg-info{
   background-color:#313d3f !important;
 }
+
 </style>

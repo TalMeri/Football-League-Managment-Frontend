@@ -1,20 +1,26 @@
 <template>
+<div class="container-player">
   <div class="player-preview">
     <div :title="name" @click="moveToPlayerPage(id)" class="player-title">
       <b>Player Name:</b> {{ name }}
     </div>
-    <ul class="player-content">
+    <div class="player-content">
+    <ul>
       <li> <b>Team Name:</b> {{ team_name }}</li>
       <li> <b>Position:</b> {{ position }}</li>
     </ul>
-    <div style="text-align: center">
+    </div>
+    <div class="player-image" style="text-align: center">
     <img
       :src="image"
       class="card-img-bottom"
-      style="height: 200px; width: auto"
+      style="max-height: 200px; width: auto"
     />
+    <div class="button">
     <b-button class="b-button" :disabled="this.$root.store.favoritePlayers.some(data=> data.id==id)" @click=addToFavorite> &#128077; </b-button>
     </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -74,29 +80,42 @@ export default {
 </script>
 
 <style>
-.player-preview {
+.container-player{
   display: inline-block;
+}
+.player-preview {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   width: 250px;
   height: 320px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
   border-radius: 10px;
-  border-width: 5px;
+  border-width: 2px;
   border-color:cadetblue;
+  background:rgba(255, 255, 255, 0.75);
+  color:black;
+  align-items: center;
+
 }
 
 .player-preview .player-title {
   text-align: center;
   text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+  color:  rgb(8,54,116);
 }
 
 .player-preview .player-content {
   width: 100%;
   overflow: hidden;
 }
-
-
-
+.button{
+  align-items: center;
+  text-align: center;
+}
+.player-title,.player-content,.player-image,.button{
+  flex-grow: 1;
+}
 </style>
