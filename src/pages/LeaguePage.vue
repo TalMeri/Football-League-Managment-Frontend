@@ -1,6 +1,6 @@
 <template>
   <div class="container-league">
-    <h2>MANAGE LEAGUE</h2>
+    <h2>Manage League</h2>
     <div class="row">
       <div class="col-sm" id="leftSort">
         <b-input-group prepend="Sort By:" id="sortby-input">

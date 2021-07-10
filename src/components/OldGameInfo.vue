@@ -70,24 +70,25 @@ export default {
 .old-game-info {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 400px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
   border-radius: 10px;
-  border-width: 5px;
+  border-width: 2px;
   border-color:cadetblue;
+  background:rgba(255, 255, 255, 0.75);
 }
 
 .old-game-info .old-game-title {
   text-align: center;
   text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+  color:  rgb(8,54,116);
 }
 
 .old-game-info .old-game-content {
-  width: 100%;
-  overflow: hidden;
+  align-content: center;
+  text-align: left;
 }
 
 

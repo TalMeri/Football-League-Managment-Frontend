@@ -8,7 +8,7 @@
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
         <b-nav-item :to="{ name: 'currentGames' }">Games</b-nav-item>
         <b-nav-item :to="{ name: 'about' }">About</b-nav-item>
-        <b-nav-item v-if="$root.store.username=='manager'" :to="{ name: 'league' }">Manage Leauge</b-nav-item>
+        <b-nav-item v-if="$root.store.username=='manager'" :to="{ name: 'league' }">Manage League</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
           <b-nav-text>Hello, Guest</b-nav-text>

@@ -1,6 +1,6 @@
 <template>
   <div class="container-games">
-    <h2>GAMES</h2>
+    <h2>Games</h2>
 <table class="table table-hover table-dark">
   <thead>
     <tr class="bg-primary">

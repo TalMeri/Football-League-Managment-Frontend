@@ -16,6 +16,8 @@
       class="card-img-bottom"
       style="max-height: 200px; width: auto"
     />
+    </div>
+    <div class="player-botton">
     <b-button v-if="$root.store.username" class="b-button" :disabled="this.$root.store.favoritePlayers.some(data=> data.id==id)" @click=addToFavorite> &#128077; </b-button>
     </div>
   </div>
@@ -86,7 +88,7 @@ export default {
   flex-direction: column;
   text-align: center;
   width: 250px;
-  height: 320px;
+  height: 350px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
@@ -108,12 +110,16 @@ export default {
 .player-preview .player-content {
   width: 100%;
   overflow: hidden;
+  text-align: left;
 }
-.button{
+.player-button{
   align-items: center;
   text-align: center;
 }
-.player-title,.player-content,.player-image,.button{
+.player-title,.player-content,.player-image,.player-button{
   flex-grow: 1;
+}
+.player-title:hover{
+  color:rgb(111, 155, 197);
 }
 </style>
