@@ -4,7 +4,7 @@
       <b>Team Name:</b> {{ name }}
     </div>
     <div style="text-align: center">
-    <img
+    <img @click="moveToTeamPage(id)"
       :src="logo_path"
       class="card-img-bottom"
       style="height: 200px; width: auto"
@@ -42,7 +42,7 @@ export default {
         const response = await this.axios.post(
           "http://localhost:3000/users/favoriteTeams",
           {
-            teamId: this.id
+            teamId: this.id.toString()
           }
         );
         this.axios.defaults.withCredentials = false;
@@ -51,7 +51,7 @@ export default {
       } catch (error) {
         console.log("error in add to favorite teams")
         console.log(error);
-        this.$root.toast("Favorite Teams", error.data, "warning");
+        this.$root.toast("Favorite Teams", error.response.data, "warning");
       }
     }
   },

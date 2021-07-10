@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="title">{{this.player.name}}</h1>
   <div class="row">
-    <div class="col-sm" style="text-align: center">
+    <div v-if="this.player!=null" class="col-sm" style="text-align: center">
       <PlayerPreview
       :id="this.player.id" 
       :name="this.player.name" 
@@ -10,7 +10,7 @@
       :team_name="this.player.team_name" 
       :image="this.player.image"></PlayerPreview>
     </div>
-    <div class="col-sm">
+    <div v-if="this.player!=null" class="col-sm">
       <PlayerInfo
         :common_name="this.player.common_name"
         :birthdate="this.player.birthdate"

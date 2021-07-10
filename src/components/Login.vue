@@ -106,9 +106,9 @@ export default {
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
-        this.getFavorites();
         this.$root.toast("Login", "User logged in successfully", "success");
-        this.$router.push("/");
+        await this.getFavorites();
+        this.$emit('updateFavorite')
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
@@ -151,7 +151,7 @@ export default {
         } catch (error) {
         console.log("error in update games")
         console.log(error.response.data);
-        this.$root.toast("Favorite Games", error.response.data, "warning");
+        this.$root.toast("User Favorite", error.response.data, "warning");
       }
     }
   }

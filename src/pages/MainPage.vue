@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="col-sm">
-      <Login v-if="!$root.store.username"></Login>
+      <Login v-if="!$root.store.username" @updateFavorite="updateFavorite"></Login>
       <div v-else>
         <h5 id="favGames">My Favorite Games</h5>
         <GamePreview
@@ -42,6 +42,15 @@ export default {
       games: this.$root.store.favoriteGames.slice(0,3)
     };
   },
+  methods: {
+    updateFavorite(){
+      this.games = this.$root.store.favoriteGames.slice(0,3)
+      console.log(this.games)
+    }
+  },
+  mounted(){
+    console.log(this.games)
+  }
 };
 </script>
 

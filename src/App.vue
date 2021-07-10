@@ -23,8 +23,8 @@
           <b-dropdown-item :to="{ name: 'favoriteGames' }">My Games</b-dropdown-item>
           <b-dropdown-item :to="{ name: 'favoriteTeams' }">My Teams</b-dropdown-item>
           <b-dropdown-item :to="{ name: 'favoritePlayers'}">My Players</b-dropdown-item>
-          <b-dropdown-item @click="Logout()">Log Out</b-dropdown-item>
         </b-nav-item-dropdown>
+        <b-nav-item @click="Logout()">Log Out</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

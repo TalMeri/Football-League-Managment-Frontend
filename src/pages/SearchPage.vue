@@ -99,27 +99,68 @@ export default {
   methods: {
     async Search(){
       console.log("response");
+      console.log(this.searchQuery);
       try {
-        console.log(this.FilterBy);
+        this.teams = [];
+        this.players = [];
+        if (this.searchQuery==""){//check if input exist
+          this.$root.toast("Search", "Search input is missing", "warning");
+          this.$root.store.lastSearch(this.teams, this.players);
+          return;
+        }
+        if (!(this.searchQuery.replace(/\s/g, '').length)){//check if containing only spaces
+          this.$root.toast("Search", "No Such Team or Player", "warning");
+          this.$root.store.lastSearch(this.teams, this.players);
+          return;
+        }
         this.axios.defaults.withCredentials = true;
         let response;
         if (this.FilterBy == "No Filter"){
-          console.log(this.FilterBy);
           response = await this.axios.get(
             "http://localhost:3000/search/searchByName/"+
                 this.searchQuery,
         );}
         else if (this.FilterBy == "Position"){
+          if (this.positionFilter==""){//check if input exist
+            this.$root.toast("Search", "Filter input is missing", "warning");
+            this.$root.store.lastSearch(this.teams, this.players);
+            return;
+          }
+          if (!(this.positionFilter.replace(/\s/g, '').length)){//check if containing only spaces
+          this.$root.toast("Search", "No Such Team or Player", "warning");
+          this.$root.store.lastSearch(this.teams, this.players);
+          return;
+        }
           response = await this.axios.get(
             "http://localhost:3000/search/filterWithPosition/"+
                 this.searchQuery+"/"+this.positionFilter,
         );}
         else if (this.FilterBy == "Team Name"){
+          if (this.TeamNameFilter==""){//check if input exist
+            this.$root.toast("Search", "Filter input is missing", "warning");
+            this.$root.store.lastSearch(this.teams, this.players);
+            return;
+          }
+          if (!(this.TeamNameFilter.replace(/\s/g, '').length)){//check if containing only spaces
+          this.$root.toast("Search", "No Such Team or Player", "warning");
+          this.$root.store.lastSearch(this.teams, this.players);
+          return;
+        }
           response = await this.axios.get(
             "http://localhost:3000/search/filterWithTeamName/"+
                 this.searchQuery+"/"+this.TeamNameFilter,
         );}
         else if (this.FilterBy == "Position and Team Name"){
+          if (this.positionFilter=="" || this.TeamNameFilter==""){//check if input exist
+            this.$root.toast("Search", "Filter input is missing", "warning");
+            this.$root.store.lastSearch(this.teams, this.players);
+            return;
+          }
+        if (!(this.positionFilter.replace(/\s/g, '')) || !(this.TeamNameFilter.replace(/\s/g, '').length)){//check if containing only spaces
+          this.$root.toast("Search", "No Such Team or Player", "warning");
+          this.$root.store.lastSearch(this.teams, this.players);
+          return;
+        }
           response = await this.axios.get(
             "http://localhost:3000/search/filterWithPositionAndTeamName/"+
                 this.searchQuery+"/"+this.positionFilter+"/"+this.TeamNameFilter,
@@ -127,14 +168,12 @@ export default {
         this.axios.defaults.withCredentials = false;
         console.log(response);
         let teams = response.data.teams;
-        this.teams = [];
         if (teams!=null){
           this.teams.push(...teams);
         }
         let players = response.data.players;
         if (this.FilterBy!="No Filter")
           players = response.data;
-        this.players = [];
         if (players!=null){
           this.players.push(...players);
         }
@@ -148,7 +187,7 @@ export default {
         console.log(error);
         this.players = [];
         this.teams = [];
-        this.$root.toast("Favorite Teams", error.data, "warning");
+        this.$root.toast("Search", error.data, "warning");
       }
     },
     sortPlayer() {
