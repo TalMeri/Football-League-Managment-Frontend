@@ -70,6 +70,7 @@ export default {
         );
         this.axios.defaults.withCredentials = false;
         this.$root.store.favoritePlayers.push({id: this.id, name: this.name , team_name: this.team_name, positionName:this.positionName, positionId:this.positionId, image:this.image });
+        this.$root.toast("Add to Favorite", "Player added successfully to favorite", "success");
         console.log(response);
       } catch (error) {
         console.log("error in add to favorite Players")

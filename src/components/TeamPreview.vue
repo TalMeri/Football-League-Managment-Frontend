@@ -51,6 +51,7 @@ export default {
         );
         this.axios.defaults.withCredentials = false;
         this.$root.store.favoriteTeams.push({id: this.id, name: this.name , logo_path: this.logo_path});
+        this.$root.toast("Add to Favorite", "Team added successfully to favorite", "success");
         console.log(response);
       } catch (error) {
         console.log("error in add to favorite teams")
