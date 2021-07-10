@@ -18,32 +18,12 @@ import GamePreview from "./GamePreview.vue";
 export default {
   name: "FavoriteGames",
   components: {
-    GamePreview: GamePreview
+    GamePreview
   }, 
   data() {
     return {
       games: this.$root.store.favoriteGames
     };
-  },
-  methods: {
-    async updateGames(){
-      console.log("response");
-      try {
-        // this.axios.defaults.withCredentials = true;
-        // const response = await this.axios.get(
-        //   "http://localhost:3000/users/favoriteGames",
-        // );
-        // this.axios.defaults.withCredentials = false;
-        // const games = response.data;
-        // this.games = [];
-        // this.games.push(...games);
-        // console.log(response);
-      } catch (error) {
-        console.log("error in update games")
-        console.log(error.response.data);
-        this.$root.toast("Favorite Games", error.response.data, "warning");
-      }
-    }
   }, 
   mounted(){
     console.log("favorite games mounted");

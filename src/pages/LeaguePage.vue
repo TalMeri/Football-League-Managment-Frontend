@@ -44,6 +44,7 @@
       <OldGameAsRow
       v-for="g in games"
       :id="g.game_id" 
+      :type="g.type"
       :hometeam="g.hometeam" 
       :awayteam="g.awayteam" 
       :game_date="g.game_date" 
@@ -97,17 +98,24 @@ export default {
         );
         this.axios.defaults.withCredentials = false;
         const games = response1.data;
+        for (let i=0; i<games.length;i++){
+          games[i]['type'] = 'New'
+          this.games.push(games[i])
+        }
         this.axios.defaults.withCredentials = true;
         const response2 = await this.axios.get(
           "http://localhost:3000/games/GetAllOldGames",
         );
         this.axios.defaults.withCredentials = false;
         const oldgames=response2.data;
-        this.games.push(...oldgames);
-        this.games.push(...games)
+        for (let i=0; i<oldgames.length;i++){
+          oldgames[i]['type'] = 'Old'
+          this.games.push(oldgames[i])
+        }
+        console.log(this.games)
       } catch (error) {
         console.log("error in games page")
-        console.log(error.response);
+        console.log(error);
       }
     },
     sort() {

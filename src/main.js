@@ -72,33 +72,45 @@ Vue.config.productionTip = false;
 
 const shared_data = {
   username: localStorage.username,
-  lastTeams: JSON.parse(localStorage.getItem("lastTeams")),
-  lastPlayers: JSON.parse(localStorage.getItem("lastPlayers")),
-  favoriteGames: JSON.parse(localStorage.getItem("favoriteGames")),
-  favoriteTeams: JSON.parse(localStorage.getItem("favoriteTeams")),
-  favoritePlayers: JSON.parse(localStorage.getItem("favoritePlayers")),
+  lastTeams: JSON.parse(localStorage.getItem("lastTeams")) || [],
+  lastPlayers: JSON.parse(localStorage.getItem("lastPlayers")) || [],
+  favoriteGames: JSON.parse(localStorage.getItem("favoriteGames")) || [],
+  favoriteTeams: JSON.parse(localStorage.getItem("favoriteTeams")) || [],
+  favoritePlayers: JSON.parse(localStorage.getItem("favoritePlayers")) || [],
 
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
-    console.log("login", this.username);
     this.lastTeams = [];
     this.lastPlayers = [];
+    console.log("login", this.username);
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
     localStorage.removeItem("lastTeams");
     localStorage.removeItem("lastPlayers");
+    localStorage.removeItem("favoriteGames");
+    localStorage.removeItem("favoriteTeams");
+    localStorage.removeItem("favoritePlayers");
     this.username = undefined;
     this.lastTeams = [];
     this.lastPlayers = [];
+    this.favoriteGames = [];
+    this.favoriteTeams = [];
+    this.favoritePlayers = [];
   },
   lastSearch(lastTeams, lastPlayers){
-    localStorage.setItem("lastTeams", JSON.stringify(lastTeams));
-    localStorage.setItem("lastPlayers", JSON.stringify(lastPlayers));
-    this.lastTeams = lastTeams;
-    this.lastPlayers = lastPlayers;
+    if (this.username){
+      localStorage.setItem("lastTeams", JSON.stringify(lastTeams));
+      localStorage.setItem("lastPlayers", JSON.stringify(lastPlayers));
+      this.lastTeams = lastTeams;
+      this.lastPlayers = lastPlayers;
+    }
+    else{
+      this.lastTeams = [];
+      this.lastPlayers = [];
+    }
   },
   addToFavoriteGames(favoriteGames){
     localStorage.setItem("favoriteGames", JSON.stringify(favoriteGames));

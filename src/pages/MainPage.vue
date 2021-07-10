@@ -10,7 +10,16 @@
       <Login v-if="!$root.store.username"></Login>
       <div v-else>
         <h5 id="favGames">My Favorite Games</h5>
-        <FavoriteGames></FavoriteGames>
+        <GamePreview
+        v-for="g in games"
+        :id="g.game_id" 
+        :hometeam="g.hometeam" 
+        :awayteam="g.awayteam" 
+        :game_date="g.game_date" 
+        :game_time="g.game_time" 
+        :field="g.feild" 
+        :referee="g.referee" 
+        :key="g.game_id"></GamePreview>
         </div>
       
     </div>
@@ -20,14 +29,19 @@
 
 <script>
 import LeagueInfo from "../components/LeagueInfo";
-import FavoriteGames from "../components/FavoriteGames";
+import GamePreview from "../components/GamePreview";
 import Login from "../components/Login";
 export default {
   components: {
     LeagueInfo, 
     Login, 
-    FavoriteGames
-  }
+    GamePreview
+  },
+  data() {
+    return {
+      games: this.$root.store.favoriteGames.slice(0,3)
+    };
+  },
 };
 </script>
 

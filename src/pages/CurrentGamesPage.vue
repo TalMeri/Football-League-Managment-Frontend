@@ -10,12 +10,16 @@
       <th scope="col">Time</th>
       <th scope="col">Field</th>
       <th scope="col">Referee</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">Add as Favorite</th>
     </tr>
   </thead>
   <tbody >
       <OldGameAsRow
       v-for="g in games"
       :id="g.game_id" 
+      :type="'New'"
       :hometeam="g.hometeam" 
       :awayteam="g.awayteam" 
       :game_date="g.game_date" 
@@ -39,12 +43,14 @@
       <th scope="col">Referee</th>
       <th scope="col">Score</th>
       <th scope="col">Events</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
       <OldGameAsRow
       v-for="g in oldgames"
       :id="g.game_id" 
+      :type="'Old'"
       :hometeam="g.hometeam" 
       :awayteam="g.awayteam" 
       :game_date="g.game_date" 

@@ -11,7 +11,7 @@
       <li> <b>Field:</b> {{ field }}</li>
       <li> <b>Referee:</b> {{ referee }}</li>
     </ul>
-    <b-button class="b-button" :disabled="this.$root.store.favoriteGames.some(data=> data.game_id==id)" @click=addToFavorite> &#128077; </b-button>
+    <b-button v-if="$root.store.username" class="b-button" :disabled="this.$root.store.favoriteGames.some(data=> data.game_id==id)" @click=addToFavorite> &#128077; </b-button>
   </div>
 </template>
 

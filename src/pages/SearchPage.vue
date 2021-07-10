@@ -26,7 +26,6 @@
       </b-input-group-append>
     </b-input-group>
     <div>
-    <!-- <h3>Players</h3> -->
     <div v-if="this.players.length>0">
       <h3>Players</h3>
       <label class="sort">Sort By: </label>
@@ -50,10 +49,6 @@
         :image="p.image" 
         :key="p.player_id"></PlayerPreview>
       </div>
-      <!-- <div v-if="this.players.length==0">
-      <h5>No Players Matching the Search</h5>
-      </div> -->
-      <!-- <h3>Teams</h3> -->
       <div v-if="this.teams.length>0">
         <h3>Teams</h3>
       <label class="sort">Sort By: </label>
@@ -74,9 +69,6 @@
         :logo_path="t.logo_path" 
         :key="t.id"></TeamPreview>
       </div>
-      <!-- <div v-if="this.teams.length==0">
-      <h5>No Teams Matching the Search</h5>
-      </div> -->
   </div>
   </div>
 </template>
@@ -156,7 +148,7 @@ export default {
         console.log(error);
         this.players = [];
         this.teams = [];
-        this.$root.toast("Favorite Teams", error.response.data, "warning");
+        this.$root.toast("Favorite Teams", error.data, "warning");
       }
     },
     sortPlayer() {

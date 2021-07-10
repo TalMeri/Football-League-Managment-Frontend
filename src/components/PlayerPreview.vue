@@ -13,7 +13,7 @@
       class="card-img-bottom"
       style="height: 200px; width: auto"
     />
-    <b-button class="b-button" :disabled="this.$root.store.favoritePlayers.some(data=> data.id==id)" @click=addToFavorite> &#128077; </b-button>
+    <b-button v-if="$root.store.username" class="b-button" :disabled="this.$root.store.favoritePlayers.some(data=> data.id==id)" @click=addToFavorite> &#128077; </b-button>
     </div>
   </div>
 </template>
