@@ -2,7 +2,7 @@
   <div class="container-teamPage">
     <h2 class="title">{{this.team.name}}</h2>
   <div class="row">
-    <div v-if="this.team!=null" class="col-sm" style="text-align: right">
+    <div v-if="this.team!=''" class="col-sm" style="text-align: right">
       <TeamPreview
       :id="this.team.id" 
       :name="this.team.name" 
@@ -21,7 +21,8 @@
       v-for="p in players"
       :id="p.id" 
       :name="p.name" 
-      :position="p.position" 
+      :positionName="p.positionName"
+      :positionId="p.positionId" 
       :team_name="p.team_name" 
       :image="p.image" 
       :key="p.player_id">
@@ -78,7 +79,7 @@ export default {
         return {
             twitter:"",
             founded:"",
-            team: null,
+            team: "",
             players:[],
             games:[],
             oldgames:[]

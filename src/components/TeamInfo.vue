@@ -14,7 +14,6 @@ export default {
   props: {
     twitter: {
         type: String,
-        required: true
     },
     founded: {
         type: Number,

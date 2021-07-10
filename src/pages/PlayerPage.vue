@@ -2,7 +2,7 @@
   <div class="container-playerpage">
     <h2 class="title">{{this.player.name}}</h2>
   <div class="row">
-    <div v-if="this.player!=null && this.player.name.length>0" class="col-sm" style="text-align: right">
+    <div v-if="this.player!=''" class="col-sm" style="text-align: right">
       <PlayerPreview
       :id="this.player.id" 
       :name="this.player.name" 
@@ -11,7 +11,7 @@
       :team_name="this.player.team_name" 
       :image="this.player.image"></PlayerPreview>
     </div>
-    <div v-if="this.player!=null" class="col-sm">
+    <div v-if="this.player!=''" class="col-sm">
       <PlayerInfo
         :common_name="this.player.common_name"
         :birthdate="this.player.birthdate"
@@ -54,6 +54,7 @@ export default {
     async PlayerInfo(){
       console.log("response");
       try {
+        console.log(this.player)
         this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(
           "http://localhost:3000/players/playerPage/"+

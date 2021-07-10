@@ -29,11 +29,9 @@ export default {
     },
     height: {
         type: String,
-        required: true
     },
     weight: {
         type: String,
-        required: true
     },
     nationality: {
         type: String,
