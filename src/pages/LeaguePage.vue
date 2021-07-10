@@ -60,7 +60,7 @@
       Add New Game
     </template>
     <div class="d-block text-center">
-      <AddNewGame></AddNewGame>
+      <AddNewGame @updateTable="AllGamesInfo"></AddNewGame>
     </div>
     <!-- <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button> -->
   </b-modal>
@@ -88,6 +88,7 @@ export default {
     async AllGamesInfo(){
       console.log("response");
       try {
+        this.games=[]
         this.axios.defaults.withCredentials = true;
         const response1 = await this.axios.get(
           "http://localhost:3000/games/GetAllNewGames",

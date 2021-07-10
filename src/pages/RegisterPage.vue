@@ -165,6 +165,9 @@
         <b-form-invalid-feedback v-if="!$v.form.image.required">
           Image is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.image.url">
+          Image must be a URL
+        </b-form-invalid-feedback>
       </b-form-group>
 
       <b-button type="reset" variant="danger">Reset</b-button>
@@ -204,7 +207,8 @@ import {
   maxLength,
   alpha,
   sameAs,
-  email
+  email,
+  url
 } from "vuelidate/lib/validators";
 
 export default {
@@ -258,7 +262,8 @@ export default {
         email
       },
       image: {
-        required
+        required,
+        url
       }
     }
   },
@@ -286,11 +291,13 @@ export default {
             image: this.form.image,
           }
         );
+        this.$root.toast("Register", "User register in successfully", "success");
         this.$router.push("/login");
         // console.log(response);
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
+        his.$root.toast("Register", error.response.data, "warning");
       }
     },
     onRegister() {

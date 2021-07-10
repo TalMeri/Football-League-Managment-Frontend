@@ -53,19 +53,22 @@ export default {
       console.log("response");
       try {
         this.axios.defaults.withCredentials = true;
+        let idToSend = this.id.toString()
         const response = await this.axios.post(
           "http://localhost:3000/users/favoriteGames",
           {
-            gameId: this.id
+            gameId: idToSend
           }
         );
+        console.log(this.id)
         this.axios.defaults.withCredentials = false;
-        this.$root.store.favoritePlayers.push({id: this.id, hometeam: this.hometeam , awayteam: this.awayteam, game_date:this.game_date, game_time:this.game_time, field:this.field, referee:this.referee });
+        this.$root.store.favoriteGames.push({game_id: this.id, hometeam: this.hometeam , awayteam: this.awayteam, game_date:this.game_date, game_time:this.game_time, feild:this.field, referee:this.referee });
+        this.$root.toast("Add to Favorite", "Game added successfully to favorite", "success");
         console.log(response);
       } catch (error) {
-        console.log("error in add to favorite Players")
+        console.log("error in add game to favorite")
         console.log(error);
-        this.$root.toast("Favorite Players", error.data, "warning");
+        this.$root.toast("Add game to favorite", error.data, "warning");
       }
     }
   },

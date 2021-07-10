@@ -12,6 +12,7 @@
           id="gamedate"
           v-model="$v.form.gamedate.$model"
           type="text"
+          placeholder="YYYY-MM-DD"
           :state="validateState('gamedate')"
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.gamedate.required">
@@ -28,6 +29,7 @@
         <b-form-input
           id="gametime"
           v-model="$v.form.gametime.$model"
+          placeholder="HH:MM"
           type="text"
           :state="validateState('gametime')"
         ></b-form-input>
@@ -199,7 +201,8 @@ export default {
           }
         );
         this.axios.defaults.withCredentials = false;
-        this.$router.push("/league");
+        this.$root.toast("Add New Game", "Game added successfully", "success");
+        this.$emit('updateTable')
         // console.log(response);
       } catch (err) {
         console.log(err.response);

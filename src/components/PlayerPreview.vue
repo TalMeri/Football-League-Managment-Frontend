@@ -11,7 +11,7 @@
     </ul>
     </div>
     <div class="player-image" style="text-align: center">
-    <img
+    <img @click="moveToPlayerPage(id)"
       :src="image"
       class="card-img-bottom"
       style="max-height: 200px; width: auto"
@@ -60,7 +60,7 @@ export default {
         const response = await this.axios.post(
           "http://localhost:3000/users/favoritePlayers",
           {
-            playerId: this.id
+            playerId: this.id.toString()
           }
         );
         this.axios.defaults.withCredentials = false;
