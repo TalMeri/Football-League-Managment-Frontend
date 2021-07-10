@@ -7,19 +7,12 @@
       </div>
     </div>
     <div class="col-sm">
-      <Login v-if="!$root.store.username" @updateFavorite="updateFavorite"></Login>
-      <div v-else>
+      <div v-if="!$root.store.username">
+        <Login></Login>
+      </div>
+        <div v-else>
         <h2 id="favGames">My Favorite Games</h2>
-        <GamePreview
-        v-for="g in games"
-        :id="g.game_id" 
-        :hometeam="g.hometeam" 
-        :awayteam="g.awayteam" 
-        :game_date="g.game_date" 
-        :game_time="g.game_time" 
-        :field="g.feild" 
-        :referee="g.referee" 
-        :key="g.game_id"></GamePreview>
+        <MainFavorite></MainFavorite>
         </div>
       
     </div>
@@ -29,28 +22,14 @@
 
 <script>
 import LeagueInfo from "../components/LeagueInfo";
-import GamePreview from "../components/GamePreview";
+import MainFavorite from "../components/MainFavorite";
 import Login from "../components/Login";
 export default {
   components: {
     LeagueInfo, 
     Login, 
-    GamePreview
+    MainFavorite
   },
-  data() {
-    return {
-      games: this.$root.store.favoriteGames.slice(0,3)
-    };
-  },
-  methods: {
-    updateFavorite(){
-      this.games = this.$root.store.favoriteGames.slice(0,3)
-      console.log(this.games)
-    }
-  },
-  mounted(){
-    console.log(this.games)
-  }
 };
 </script>
 

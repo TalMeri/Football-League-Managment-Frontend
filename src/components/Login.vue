@@ -107,12 +107,13 @@ export default {
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
         this.$root.toast("Login", "User logged in successfully", "success");
-        await this.getFavorites();
-        this.$emit('updateFavorite')
-        this.$emit('moveto')
+        await this.getFavoriteGames();
+        await this.getFavoritePlayers();
+        await this.getFavoriteTeams();
+        this.$emit('moveto');
       } catch (err) {
-        console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        console.log(err);
+        // this.form.submitError = err.response.data.message;
         this.$root.toast("Login", err.response.data, "warning");
       }
     },
@@ -127,7 +128,7 @@ export default {
 
       this.Login();
     },
-    async getFavorites(){
+    async getFavoriteGames(){
         try {
         this.axios.defaults.withCredentials = true;
         const favGames = await this.axios.get(
@@ -136,6 +137,13 @@ export default {
         this.axios.defaults.withCredentials = false;
         const games = favGames.data;
         this.$root.store.addToFavoriteGames(games);
+        } catch (error) {
+        console.log("error in get favorite games")
+        console.log(error.response.data);
+      }
+    },
+        async getFavoritePlayers(){
+        try {
         this.axios.defaults.withCredentials = true;
         const favPlayers = await this.axios.get(
           "http://localhost:3000/users/favoritePlayers",
@@ -143,6 +151,13 @@ export default {
         this.axios.defaults.withCredentials = false;
         const players = favPlayers.data;
         this.$root.store.addToFavoritePlayers(players);
+        } catch (error) {
+        console.log("error in get favorite players")
+        console.log(error.response.data);
+      }
+    },
+        async getFavoriteTeams(){
+        try {
         this.axios.defaults.withCredentials = true;
         const favTeams = await this.axios.get(
           "http://localhost:3000/users/favoriteTeams",
@@ -151,9 +166,8 @@ export default {
         const teams = favTeams.data;
         this.$root.store.addToFavoriteTeams(teams);
         } catch (error) {
-        console.log("error in update games")
+        console.log("error in get favorite teams")
         console.log(error.response.data);
-        this.$root.toast("User Favorite", error.response.data, "warning");
       }
     }
   }

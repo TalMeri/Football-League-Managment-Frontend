@@ -26,6 +26,10 @@ export default {
   },
   mounted(){
     console.log("favorite games mounted");
+    if (!(this.players.length>0))
+    {
+      this.$root.toast("Favorite Players", "No Favorite Players", "warning");
+    }
     //this.updatePlayers(); 
   }
 };

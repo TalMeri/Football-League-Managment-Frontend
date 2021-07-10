@@ -23,6 +23,10 @@ export default {
   },
   mounted(){
     console.log("favorite teams mounted");
+    if (!(this.teams.length>0))
+    {
+      this.$root.toast("Favorite teams", "No Favorite teams", "warning");
+    }
     //this.updateTeams(); 
   }
 };

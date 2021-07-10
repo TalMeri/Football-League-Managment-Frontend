@@ -28,6 +28,10 @@ export default {
   mounted(){
     console.log("favorite games mounted");
     console.log(this.games)
+    if (!(this.games.length>0))
+    {
+      this.$root.toast("Favorite Games", "No Favorite Games", "warning");
+    }
     //this.updateGames(); 
   }
 };
