@@ -8,7 +8,7 @@
       :name="this.team.name" 
       :logo_path="this.team.logo_path"></TeamPreview>
     </div>
-    <div v-if="this.team!=null" class="col-sm">
+    <div v-if="this.team!=''" class="col-sm">
       <TeamInfo
         :twitter="this.team.twitter"
         :founded="this.team.founded"
