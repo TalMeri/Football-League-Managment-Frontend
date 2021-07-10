@@ -1,5 +1,6 @@
 <template>
     <div class="league-preview">
+      <div class="show" v-if="leagueName.length>0">
       <div class="league-title">
         <b>{{leagueName}}</b><br/>
       </div>
@@ -9,9 +10,9 @@
         <b>Stage:</b> {{ stage }}
         <br/>
         <br/>
-        <div v-if="games!=null">
+        <div v-if="games!=null" id="nextGame">
           <b>NEXT GAME:</b>
-          <GamePreview style="text-align: left"
+          <GamePreview 
             :id="games.game_id"
             :hometeam="games.hometeam" 
             :awayteam="games.awayteam" 
@@ -21,6 +22,10 @@
             :referee="games.referee" 
             :key="games.game_id"></GamePreview>
         </div>
+      </div>
+      </div>
+      <div class="info" v-else>
+        <h3>&#9917;SUPERLIGA&#9917;</h3>
       </div>
   </div>
 </template>
@@ -70,7 +75,7 @@ export default {
 .league-preview {
   display: inline-block;
   width: 350px;
-  height: 350px;
+  height: 370px;
   position: relative;
   margin: 10px 10px;
   border-radius: 6px;
@@ -88,6 +93,15 @@ export default {
   width: 100%;
   overflow: hidden;
   text-align: center;
+}
+#nextGame{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.info{
+  margin-top: 150px;
 }
 
 

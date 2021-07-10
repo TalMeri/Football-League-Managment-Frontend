@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
   <div class="row">
-    <div class="col-sm" style="text-align: center">
+    <div class="col-sm">
       <div id="LeagueInfo">
       <LeagueInfo></LeagueInfo>
       </div>
@@ -60,8 +60,5 @@ export default {
 }
 .row{
   margin-right: 0;
-}
-#favGames{
-  color:  rgb(111, 155, 197);
 }
 </style>
