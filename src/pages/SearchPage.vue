@@ -1,13 +1,14 @@
 <template>
   <div class="container-search">
-    <h1 class="title">Search Page</h1>
-      <label class="sort">Filter By: </label>
-      <select v-model="FilterBy">
-        <option>No Filter</option>
-        <option>Position</option>
-        <option>Team Name</option>
-        <option>Position and Team Name</option>
-      </select>
+    <h2 class="title">Search For Teams and Players</h2>
+      <b-input-group prepend="Filter By:" id="filterby-input">
+        <select class="custom-select" v-model="FilterBy">
+          <option>No Filter</option>
+          <option>Position</option>
+          <option>Team Name</option>
+          <option>Position and Team Name</option>
+        </select>
+      </b-input-group>
       <div v-if="this.FilterBy==`Position` || this.FilterBy==`Position and Team Name`"> 
         <b-input-group prepend="Position:" id="filter-position">
         <b-form-input v-model="positionFilter" id="positionFilter"></b-form-input>
@@ -18,27 +19,30 @@
         <b-form-input v-model="TeamNameFilter" id="teamNameFilter"></b-form-input>
         </b-input-group>
       </div>
-      <br>
       <b-input-group prepend="Search Query:" id="search-input">
       <b-form-input v-model="searchQuery" id="searchQuery"></b-form-input>
       <b-input-group-append>
-        <b-button variant="success" @click="Search">Search</b-button>
+        <b-button variant="info" @click="Search">Search</b-button>
       </b-input-group-append>
     </b-input-group>
     <div>
     <div v-if="this.players.length>0">
-      <h3>Players</h3>
-      <label class="sort">Sort By: </label>
-      <select v-model="SortByPlayer">
-        <option>Player Name</option>
-        <option>Team Name</option>
-      </select>
-      <label class="sort">Order By: </label>
-      <select v-model="OrderByPlayer">
-        <option>Ascending</option>
-        <option>Descending</option>
-      </select>
+      <div class="search-player">
+      <h4>Players</h4>
+      <b-input-group prepend="Sort By:" id="sortby-player">
+        <select class="custom-select" v-model="SortByPlayer">
+          <option>Player Name</option>
+          <option>Team Name</option>
+        </select>
+      </b-input-group>
+      <b-input-group prepend="Order By:" id="orderby-player">
+        <select class="custom-select" v-model="OrderByPlayer">
+          <option>Ascending</option>
+          <option>Descending</option>
+        </select>
+      </b-input-group>
       <b-button class="b-button" type="submit" @click="sortPlayer" variant="primary">Sort</b-button>
+      </div>
       <br>
       <PlayerPreview
         v-for="p in players"
@@ -50,17 +54,21 @@
         :key="p.player_id"></PlayerPreview>
       </div>
       <div v-if="this.teams.length>0">
-        <h3>Teams</h3>
-      <label class="sort">Sort By: </label>
-      <select v-model="SortByTeam">
-        <option>Team Name</option>
-      </select>
-      <label class="sort">Order By: </label>
-      <select v-model="OrderByTeam">
-        <option>Ascending</option>
-        <option>Descending</option>
-      </select>
+        <div class="search-teams">
+        <h4>Teams</h4>
+      <b-input-group prepend="Sort By:" id="sortby-teams">
+        <select class="custom-select" v-model="SortByTeam">
+          <option>Team Name</option>
+        </select>
+      </b-input-group>
+      <b-input-group prepend="Order By:" id="orderby-teams">
+        <select class="custom-select" v-model="OrderByteam">
+          <option>Ascending</option>
+          <option>Descending</option>
+        </select>
+      </b-input-group>
       <b-button class="b-button" type="submit" @click="sortTeam" variant="primary">Sort</b-button>
+      </div>
       <br>
       <TeamPreview
         v-for="t in teams"
@@ -233,10 +241,34 @@ export default {
 <style scoped>
 
 #search-input, #filter-position, #filter-teamname {
-  margin-left: 20px; 
+  margin-bottom: 20px; 
   width: 500px; 
+  margin-left: auto;
+  margin-right: auto;
 }
 .container-search{
   padding:50px;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+#filterby-input, #sortby-player, #orderby-player,#orderby-teams,#sortby-teams {
+  width: 320px; 
+  padding-bottom:20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+h4{
+  color:white;
+}
+.search-teams,.search-player{
+  max-width: 550px;
+  padding:20px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color:white;
+  text-align: center;
+  background:rgba(0, 0, 0, 0.75);
 }
 </style>
