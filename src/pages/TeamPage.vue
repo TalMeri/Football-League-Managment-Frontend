@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
-    <h1 class="title">{{this.team.name}}</h1>
+  <div class="container-teamPage">
+    <h2 class="title">{{this.team.name}}</h2>
   <div class="row">
-    <div v-if="this.team!=null" class="col-sm" style="text-align: center">
+    <div v-if="this.team!=null" class="col-sm" style="text-align: right">
       <TeamPreview
       :id="this.team.id" 
       :name="this.team.name" 
@@ -15,9 +15,10 @@
       ></TeamInfo>
     </div>
   </div>
-  <div class="row">
-<PlayerPreview
-    v-for="p in players"
+  <div class="row" v-if="players.length>0"><div class="container-title"><h4>Team's Players</h4></div></div>
+  <div v-if="players.length>0">
+      <PlayerPreview
+      v-for="p in players"
       :id="p.id" 
       :name="p.name" 
       :position="p.position" 
@@ -26,7 +27,8 @@
       :key="p.player_id">
 </PlayerPreview>      
   </div>
-  <div class="row">
+  <div class="row" v-if="games.length>0"><div class="container-title"><h4>Team's Planned Games</h4></div></div>
+  <div  v-if="games.length>0">
       <GamePreview
         v-for="g in games"
         :id="g.game_id" 
@@ -39,7 +41,8 @@
         :key="g.game_id">
       </GamePreview>
   </div>
-  <div class="row">
+  <div class="row" v-if="oldgames.length>0"><div class="container-title"><h4>Team's Past Games</h4></div></div>
+  <div  v-if="oldgames.length>0">
       <OldGameInfo
         v-for="o in oldgames"
         :id="o.game_id" 
@@ -53,7 +56,7 @@
         :score="o.score"
         :key="o.game_id">
       </OldGameInfo>
-  </div>
+      </div>
   </div>
 </template>
 
@@ -115,15 +118,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.RandomRecipes {
-  margin: 10px 0 10px;
+.container-title{
+  max-width: 550px;
+  padding:20px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color:white;
+  text-align: center;
+  background:rgba(0, 0, 0, 0.75);
 }
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
+.container-teamPage{
+  padding-top:50px;
+  text-align: center;
 }
+.row{
+  margin-right: 0;
+  margin-left:0;
+}
+
 </style>

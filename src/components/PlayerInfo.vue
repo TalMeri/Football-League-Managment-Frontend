@@ -1,13 +1,13 @@
 <template>
   <div class="player-info">
-    <ul class="player-content">
-      <li> <b>Common Name:</b> {{ common_name }}</li>
-      <li> <b>Birthdate:</b> {{ birthdate }}</li>
-      <li> <b>Birth Country:</b> {{ birthcountry }}</li>
-      <li> <b>Height:</b> {{ height }}</li>
-      <li> <b>Weight:</b> {{ weight }}</li>
-      <li> <b>Nationality:</b> {{ nationality }}</li>
-    </ul>
+    <div class="player-content">
+      <div><b class="colored">Common Name:</b> {{ common_name }}</div>
+      <div><b class="colored">Birthdate:</b> {{ birthdate }}</div>
+      <div><b class="colored">Birth Country:</b> {{ birthcountry }}</div>
+      <div><b class="colored">Height:</b> {{ height }}</div>
+      <div><b class="colored">Weight:</b> {{ weight }}</div>
+      <div><b class="colored">Nationality:</b> {{ nationality }}</div>
+    </div>
   </div>
 </template>
 
@@ -48,28 +48,22 @@ export default {
 
 <style>
 .player-info {
-  display: inline-block;
-  width: 250px;
-  height: 320px;
+  color:white;
+  float:left;
+  max-width: 400px;
+  padding:20px;
+  border-radius: 10px;
+  background:rgba(0, 0, 0, 0.75);
+  height: 350px;
   position: relative;
   margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
+
 }
-
-.player-info .player-title {
-  text-align: center;
-  text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+.colored{
+  color:rgb(111, 155, 197);
 }
-
-.player-info .player-content {
-  width: 100%;
-  overflow: hidden;
+.player-content{
+  text-align: left;
 }
-
-
 
 </style>

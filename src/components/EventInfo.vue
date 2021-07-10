@@ -28,11 +28,4 @@ export default {
 
 <style>
 
-.event-info .event-content {
-  width: 100%;
-  overflow: hidden;
-}
-
-
-
 </style>

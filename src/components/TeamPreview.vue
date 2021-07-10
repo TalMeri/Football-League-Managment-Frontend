@@ -1,16 +1,20 @@
 <template>
+<div class="container-team">
   <div class="team-preview">
     <div :title="id" @click="moveToTeamPage(id)" class="team-title">
       <b>Team Name:</b> {{ name }}
     </div>
-    <div style="text-align: center">
+    <div class="team=image" style="text-align: center">
     <img @click="moveToTeamPage(id)"
       :src="logo_path"
       class="card-img-bottom"
-      style="height: 200px; width: auto"
+      style="min-height: 200px; width: auto"
     />
+    </div>
+    <div class="team-button">
     <b-button v-if="$root.store.username" :disabled="this.$root.store.favoriteTeams.some(data=> data.id==id)" type="button" @click=addToFavorite>&#128077;</b-button>
     </div>
+  </div>
   </div>
 </template>
 
@@ -62,24 +66,34 @@ export default {
 </script>
 
 <style>
-.team-preview {
+.container-team{
   display: inline-block;
+  text-align: center;
+}
+.team-preview {
+  display: flex;
+  flex-direction: column;
   width: 250px;
-  height: 250px;
+  height: 300px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
   border-radius: 10px;
-  border-width: 5px;
+  border-width: 2px;
   border-color:cadetblue;
+  background:rgba(255, 255, 255, 0.75);
+  color:black;
 }
 
 .team-preview .team-title {
   text-align: center;
   text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+  color:  rgb(8,54,116);
 }
-
-
-
+.team-title,.team-image,.team-button{
+  flex-grow: 1;
+}
+.team-title:hover{
+  color:rgb(111, 155, 197);
+}
 </style>

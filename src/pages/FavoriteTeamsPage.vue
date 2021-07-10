@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class="title">Favorite Teams</h1>
+  <div class="container-favTeam">
+    <h2 class="title">Favorite Teams</h2>
       <FavoriteTeams></FavoriteTeams>
   </div>
 </template>
@@ -15,15 +15,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.RandomRecipes {
-  margin: 10px 0 10px;
+.container-favTeam{
+  padding:50px;
 }
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
-}
+
 </style>

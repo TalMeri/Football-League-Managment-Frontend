@@ -9,7 +9,7 @@
     <div class="col-sm">
       <Login v-if="!$root.store.username" @updateFavorite="updateFavorite"></Login>
       <div v-else>
-        <h5 id="favGames">My Favorite Games</h5>
+        <h2 id="favGames">My Favorite Games</h2>
         <GamePreview
         v-for="g in games"
         :id="g.game_id" 

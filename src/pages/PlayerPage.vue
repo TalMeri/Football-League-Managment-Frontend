@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
-    <h1 class="title">{{this.player.name}}</h1>
+  <div class="container-playerpage">
+    <h2 class="title">{{this.player.name}}</h2>
   <div class="row">
-    <div v-if="this.player!=null" class="col-sm" style="text-align: center">
+    <div v-if="this.player!=null" class="col-sm" style="text-align: right">
       <PlayerPreview
       :id="this.player.id" 
       :name="this.player.name" 
@@ -74,15 +74,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.RandomRecipes {
-  margin: 10px 0 10px;
-}
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
+.container-playerpage{
+  padding:50px;
 }
 </style>

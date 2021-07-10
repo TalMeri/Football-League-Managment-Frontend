@@ -1,9 +1,10 @@
 <template>
-  <div class="team-info">
-    <ul class="team-content">
-      <li> <b>Twitter:</b> {{ twitter }}</li>
-      <li> <b>Founded:</b> {{ founded }}</li>
-    </ul>
+  <div class="container-teaminfo">
+    <div class="team-content">
+       <div v-if="twitter!=null"><b class="colored">Twitter:</b> {{ twitter }}</div>
+       <div v-else><b class="colored">Twitter:</b> Not Found</div>
+      <div><b class="colored">Founded:</b> {{ founded }}</div>
+    </div>
   </div>
 </template>
 
@@ -27,23 +28,24 @@ export default {
 </script>
 
 <style>
-.team-info {
-  display: inline-block;
-  width: 250px;
-  height: 320px;
+.container-teaminfo {
+  color:white;
+  float:left;
+  max-width: 400px;
+  min-width: 200px;
+  padding:20px;
+  border-radius: 10px;
+  background:rgba(0, 0, 0, 0.75);
+  height: 200px;
   position: relative;
   margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
+
 }
-
-.team-info .team-content {
-  width: 100%;
-  overflow: hidden;
+.colored{
+  color:rgb(111, 155, 197);
 }
-
-
+.team-content{
+  text-align: left;
+}
 
 </style>
