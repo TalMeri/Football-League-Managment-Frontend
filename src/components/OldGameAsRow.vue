@@ -1,7 +1,7 @@
 <template>
     <tr>
-      <td style="cursor: pointer;">{{ hometeam }}</td>
-      <td style="cursor: pointer;">{{ awayteam }}</td>
+      <td style="cursor: pointer;" @click="moveToTeamPage(hometeamId)">{{ hometeam }}</td>
+      <td style="cursor: pointer;" @click="moveToTeamPage(awayteamId)">{{ awayteam }}</td>
       <td>{{ game_date }}</td>
       <td>{{ game_time }}</td>
       <td>{{ field }}</td>
@@ -26,7 +26,7 @@ export default {
   components: {
     EventInfo
   },
-  name: "GamePreview",
+  name: "oldGameAsRow",
   props: {
       id: {
         type: Number,
@@ -40,8 +40,16 @@ export default {
         type: String,
         required: true
       },
+      hometeamId: {
+        type: Number,
+        required: true
+      },
       awayteam: {
         type: String,
+        required: true
+      },
+      awayteamId: {
+        type: Number,
         required: true
       },
       game_date: {
@@ -72,15 +80,12 @@ export default {
       console.log("response");
       try {
         this.axios.defaults.withCredentials = true;
-        let idToSend = this.id.toString();
-        console.log(this.id)
         const response = await this.axios.post(
           "http://localhost:3000/users/favoriteGames",
           {
             gameId: this.id.toString()
-          }
+          },
         );
-
         this.axios.defaults.withCredentials = false;
         this.$root.store.favoriteGames.push({game_id: this.id, hometeam: this.hometeam , awayteam: this.awayteam, game_date:this.game_date, game_time:this.game_time, feild:this.field, referee:this.referee });
         this.$root.toast("Add to Favorite", "Game added successfully to favorite", "success");
@@ -90,7 +95,10 @@ export default {
         console.log(error);
         this.$root.toast("Games", error.response.data, "warning");
       }
-    }
+    },
+    async moveToTeamPage(id){
+      this.$router.push(`/TeamPage/:${id}`);
+    },
   },
   mounted(){
     console.log("game preview mounted")

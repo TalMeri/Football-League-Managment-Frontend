@@ -6,7 +6,8 @@
       <PlayerPreview
       :id="this.player.id" 
       :name="this.player.name" 
-      :position="this.player.position" 
+      :positionName="this.player.positionName"
+      :positionId="this.player.positionId" 
       :team_name="this.player.team_name" 
       :image="this.player.image"></PlayerPreview>
     </div>
@@ -41,7 +42,8 @@ export default {
             birthdate:"",
             birthcountry:"",
             team_name:"",
-            position:"",
+            positionName:"",
+            positionId:"",
             image:"",
             height:"",
             weight:"",

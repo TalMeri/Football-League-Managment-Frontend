@@ -7,7 +7,8 @@
     <div class="player-content">
     <ul>
       <li> <b>Team Name:</b> {{ team_name }}</li>
-      <li> <b>Position:</b> {{ position }}</li>
+      <li> <b>Position Name:</b> {{ positionName }}</li>
+      <li> <b>Position Id:</b> {{ positionId }}</li>
     </ul>
     </div>
     <div class="player-image" style="text-align: center">
@@ -40,8 +41,12 @@ export default {
         type: String,
         required: true
       },
-      position: {
+      positionName: {
         type: String,
+        required: true
+      },
+      positionId: {
+        type: Number,
         required: true
       },
       image: {
@@ -64,7 +69,7 @@ export default {
           }
         );
         this.axios.defaults.withCredentials = false;
-        this.$root.store.favoritePlayers.push({id: this.id, name: this.name , team_name: this.team_name, position:this.position, image:this.image });
+        this.$root.store.favoritePlayers.push({id: this.id, name: this.name , team_name: this.team_name, positionName:this.positionName, positionId:this.positionId, image:this.image });
         console.log(response);
       } catch (error) {
         console.log("error in add to favorite Players")
