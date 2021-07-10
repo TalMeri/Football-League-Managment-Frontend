@@ -2,7 +2,7 @@
   <div class="container-playerpage">
     <h2 class="title">{{this.player.name}}</h2>
   <div class="row">
-    <div v-if="this.player!=null && this.player.name.length>0" class="col-sm" style="text-align: right">
+    <div v-if="this.player!=null" class="col-sm" style="text-align: right">
       <PlayerPreview
       :id="this.player.id" 
       :name="this.player.name" 

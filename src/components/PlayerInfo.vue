@@ -4,8 +4,10 @@
       <div><b class="colored">Common Name:</b> {{ common_name }}</div>
       <div><b class="colored">Birthdate:</b> {{ birthdate }}</div>
       <div><b class="colored">Birth Country:</b> {{ birthcountry }}</div>
-      <div><b class="colored">Height:</b> {{ height }}</div>
-      <div><b class="colored">Weight:</b> {{ weight }}</div>
+      <div v-if="height!=null"><b class="colored">Height:</b> {{ height }}</div>
+      <div v-else><b class="colored">Height:</b>Not Found</div>
+      <div v-if="weight!=null"><b class="colored">Weight:</b> {{ weight }}</div>
+      <div v-else><b class="colored">Weight:</b> Not Found</div>
       <div><b class="colored">Nationality:</b> {{ nationality }}</div>
     </div>
   </div>
