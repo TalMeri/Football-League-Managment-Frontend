@@ -9,7 +9,7 @@ Implement the frontend part of the system using vue.js
 ### Preparations
 - Design RESTful API
 
-### use-cases
+### Use-cases
 - Check the games of the season
 - Search for players and teams
 - Players and Teams pages
